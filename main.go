@@ -19,7 +19,21 @@ import (
 		return l,k
 	}
 
+	func segitigaSikuSiku(h int){
+		i := 1
+		for i <= h{
+			x := 0
+			for x < i {
+			fmt.Print("*")
+			x++
+			}
+			i++
+			fmt.Print("\n")
+		}
+	}
+
 func main() {
-	luas, keliling := luasDanKeliling(7)
-	fmt.Printf("Luas: %.2f Keliling: %.2f", luas, keliling)
+	// luas, keliling := luasDanKeliling(7)
+	// fmt.Printf("Luas: %.2f Keliling: %.2f", luas, keliling)
+	segitigaSikuSiku(5)
 }
