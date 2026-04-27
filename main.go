@@ -29,22 +29,36 @@ import "fmt"
 // 	}
 // }
 
-	func sisipAngka(){
-		angka := []int{
-			50,75,66,20,32,90,
-		}
-		newSlice := make([]int, len(angka))
-		copy(newSlice, angka)
-		
-		index := 3
-		result := make([]int, 0)
-		fmt.Println(cap(result))
-		satu := newSlice[:index]
+// func sisipAngka(){
+// 	angka := []int{
+// 		50,75,66,20,32,90,
+// 	}
+// 	newSlice := make([]int, len(angka))
+// 	copy(newSlice, angka)
 
-		fmt.Println(satu)
-		result = append(newSlice[:index], append([]int{88}, newSlice[index:]...)...)
+// 	index := 3
+// 	result := make([]int, 0)
+// 	fmt.Println(cap(result))
+// 	satu := newSlice[:index]
 
-	}
+// 	fmt.Println(cap(satu))
+// 	result = append(newSlice[:index], append([]int{88}, newSlice[index:]...)...)
+
+// }
+
+type Education struct {
+	Name  string
+	Major string
+}
+type User struct {
+	Name      string
+	Photo     string
+	Email     string
+	Age       int
+	Telp      string
+	isMarried bool
+	Education []Education
+}
 
 func main() {
 	// luas := luas(7)
@@ -54,5 +68,24 @@ func main() {
 	// l, k := luasDanKeliling(7)
 	// fmt.Printf("Luas: %.2f Keliling: %.2f\n", l, k)
 	// segitigaSikuSiku(2)
-	sisipAngka()
+	// sisipAngka()
+	naufal := User{
+		Name:      "Naufal",
+		Photo:     "https://link",
+		Email:     "naufalfadhilah@vanwallet.com",
+		Age:       19,
+		Telp:      "085167260326",
+		isMarried: false,
+		Education: []Education{
+			{
+				Name:  "SMK 1",
+				Major: "RPL",
+			},
+			{
+				Name:  "Koda Academy",
+				Major: "Talent",
+			},
+		},
+	}
+	fmt.Println(naufal)
 }
