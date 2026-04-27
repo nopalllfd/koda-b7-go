@@ -5,14 +5,14 @@ import (
 	"math"
 )
 
-const pi float64 = math.Pi
-	func luas(r float64) (l float32)  {
-		return float32(pi * r * r)
+	const pi float32 = math.Pi
+	func luas(r float32) (l float32)  {
+		return pi * r * r
 	}
-	func keliling(r float64)(k  float32){
-		return float32(2 * pi * r)
+	func keliling(r float32)(k  float32){
+		return 2 * pi * r
 	}
-	func luasDanKeliling(r float64) (float32, float32){
+	func luasDanKeliling(r float32) (float32, float32){
 		l := luas(r)
 		k := keliling(r)
 
