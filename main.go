@@ -13,8 +13,8 @@ import (
 		return 2 * pi * r
 	}
 	func luasDanKeliling(r float32) (float32, float32){
-		l := luas(r)
-		k := keliling(r)
+		l := pi * r * r
+		k := 2 * pi * r
 
 		return l,k
 	}
@@ -33,7 +33,11 @@ import (
 	}
 
 func main() {
-	// luas, keliling := luasDanKeliling(7)
-	// fmt.Printf("Luas: %.2f Keliling: %.2f", luas, keliling)
-	segitigaSikuSiku(5)
+	luas := luas(7)
+	keliling := keliling(7)
+	fmt.Printf("Luas: %.2f\n", luas)
+	fmt.Printf("Keliling: %.2f\n", keliling)
+	l, k := luasDanKeliling(7)
+	fmt.Printf("Luas: %.2f Keliling: %.2f\n", l, k)
+	segitigaSikuSiku(2)
 }
