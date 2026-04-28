@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 
+	filereader "github.com/nopalllfd/koda-b7-go/internals/FileReader"
 	"github.com/nopalllfd/koda-b7-go/internals/calc"
 	"github.com/nopalllfd/koda-b7-go/internals/insert"
 	"github.com/nopalllfd/koda-b7-go/internals/model"
@@ -22,6 +23,7 @@ func main() {
 		fmt.Println("4. Segitiga Siku-Siku")
 		fmt.Println("5. Sisip angka")
 		fmt.Println("6. User")
+		fmt.Println("7. Read file")
 		fmt.Println("0. Exit")
 		fmt.Print("Pilih menu: ")
 
@@ -86,6 +88,19 @@ func main() {
 		case "6":
 			data := model.TampilinData()
 			fmt.Println(data)
+		case "7":
+			fmt.Print("Masukkan path file : ")
+			input, _ := reader.ReadString('\n')
+			input = strings.TrimSpace(input)
+			filereader.ReadFile(input)
 		}
 	}
+
+	// a := 10
+	// var b *int = &a
+	// fmt.Println("Nilai a", a)
+	// *b = 20
+	// fmt.Println("Alamat a", &a)
+	// fmt.Println("nilai b", *b)
+	// filereader.ReadFile()
 }
