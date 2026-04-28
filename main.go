@@ -24,6 +24,7 @@ func main() {
 		fmt.Println("5. Sisip angka")
 		fmt.Println("6. User")
 		fmt.Println("7. Read file")
+		fmt.Println("8. Person method")
 		fmt.Println("0. Exit")
 		fmt.Print("Pilih menu: ")
 
@@ -93,6 +94,21 @@ func main() {
 			input, _ := reader.ReadString('\n')
 			input = strings.TrimSpace(input)
 			filereader.ReadFile(input)
+		case "8":
+			fmt.Print("Masukkan nama : ")
+			nameInput, _ := reader.ReadString('\n')
+			nameInput = strings.TrimSpace(nameInput)
+			fmt.Print("Masukkan alamat : ")
+			addressInput, _ := reader.ReadString('\n')
+			addressInput = strings.TrimSpace(addressInput)
+
+			fmt.Print("Masukkan telepon : ")
+			phoneInput, _ := reader.ReadString('\n')
+			phoneInput = strings.TrimSpace(phoneInput)
+
+			user := model.NewPerson(nameInput, addressInput, phoneInput)
+			user.GreetPerson()
+			user.PrintPerson()
 		}
 	}
 
@@ -103,4 +119,10 @@ func main() {
 	// fmt.Println("Alamat a", &a)
 	// fmt.Println("nilai b", *b)
 	// filereader.ReadFile()
+	// nopal := model.NewPerson("Nopal", "Bogor", "8128321")
+	// fmt.Println(*nopal)
+	// nopal.GreetPerson()
+	// nopal.SetName("Padil")
+	// nopal.GreetPerson()
+	// nopal.PrintPerson()
 }
