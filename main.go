@@ -1,9 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"sync"
 
-	"github.com/nopalllfd/koda-b7-go/internals/goroutines"
+	"github.com/nopalllfd/koda-b7-go/internals/acts"
 )
 
 func main() {
@@ -126,14 +127,25 @@ func main() {
 	// bank.TransferSuccess(total)
 	// _ = bank.TransferFiktif(total)
 	// fmt.Println(bank.Amount)
-	var wg sync.WaitGroup
-	orders := []string{"Kopi Susu", "Roti", "Americano"}
-	// fmt.Println(len(orders))
-	for _, v := range orders {
-		wg.Go(func() {
-			goroutines.BuatKopi(v, len(orders))
-		})
-	}
 
+	// var wg sync.WaitGroup
+	// orders := []string{"Kopi Susu", "Roti", "Americano"}
+	// baristas := []string{"Barista 1", "Barista 2", "Barista 3"}
+	// for i, v := range orders {
+	// 	wg.Go(func() {
+	// 		goroutines.BuatKopi(v, baristas[i])
+	// 	})
+	// }
+
+	// wg.Wait()
+
+	var wg sync.WaitGroup
+
+	wg.Go(acts.Mandi)
+	wg.Go(acts.BuatKopi)
+	wg.Go(acts.MenyiapkanSarapan)
+	wg.Go(acts.Merapikan)
 	wg.Wait()
+	fmt.Println("Berangkat Kerja")
+
 }
