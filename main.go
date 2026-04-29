@@ -141,10 +141,15 @@ func main() {
 
 	var wg sync.WaitGroup
 
-	wg.Go(acts.Mandi)
-	wg.Go(acts.BuatKopi)
-	wg.Go(acts.MenyiapkanSarapan)
-	wg.Go(acts.Merapikan)
+	wg.Add(1)
+	go acts.Mandi(&wg)
+	wg.Add(1)
+	go acts.BuatKopi(&wg)
+	wg.Add(1)
+	go acts.MenyiapkanSarapan(&wg)
+	wg.Add(1)
+	go acts.Merapikan(&wg)
+
 	wg.Wait()
 	fmt.Println("Berangkat Kerja")
 
