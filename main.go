@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"sync"
 
-	"github.com/nopalllfd/koda-b7-go/internals/checkout"
+	"github.com/nopalllfd/koda-b7-go/internals/goroutines"
 )
 
 func main() {
@@ -119,11 +119,21 @@ func main() {
 	// nopal.GreetPerson()
 	// nopal.PrintPerson()
 
-	total := []int{200, 300, 200, 300}
+	// total := []int{200, 300, 200, 300}
 
-	// var pay checkout.Payment
-	bank := checkout.MethodBank{}
-	bank.TransferSuccess(total)
-	_ = bank.TransferFiktif(total)
-	fmt.Println(bank.Amount)
+	// // var pay checkout.Payment
+	// bank := checkout.MethodBank{}
+	// bank.TransferSuccess(total)
+	// _ = bank.TransferFiktif(total)
+	// fmt.Println(bank.Amount)
+	var wg sync.WaitGroup
+	orders := []string{"Kopi Susu", "Roti", "Americano"}
+	// fmt.Println(len(orders))
+	for _, v := range orders {
+		wg.Go(func() {
+			goroutines.BuatKopi(v, len(orders))
+		})
+	}
+
+	wg.Wait()
 }
