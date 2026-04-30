@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"sync"
-
-	"github.com/nopalllfd/koda-b7-go/internals/acts"
 )
 
 func main() {
@@ -141,16 +139,75 @@ func main() {
 
 	var wg sync.WaitGroup
 
-	wg.Add(1)
-	go acts.Mandi(&wg)
-	wg.Add(1)
-	go acts.BuatKopi(&wg)
-	wg.Add(1)
-	go acts.MenyiapkanSarapan(&wg)
-	wg.Add(1)
-	go acts.Merapikan(&wg)
+	// wg.Add(1)
+	// go acts.Mandi(&wg)
+	// wg.Add(1)
+	// go acts.BuatKopi(&wg)
+	// wg.Add(1)
+	// go acts.MenyiapkanSarapan(&wg)
+	// wg.Add(1)
+	// go acts.Merapikan(&wg)
+
+	// wg.Wait()
+	// fmt.Println("Berangkat Kerja")
+	// messages := []string{"Pesan 1", "Pesan 2", "Pesan 3"}
+	// msgChn := make(chan string)
+
+	// wg.Go(func() {
+	// 	channel.Pesan(messages, msgChn)
+	// })
+	// wg.Add(1)
+	// go channel.PapanTulis(msgChn, &wg)
+	// for _, msg := range messages {
+	// 	wg.Add(1)
+	// 	go channel.Pesan(msg, msgChn, &wg)
+	// 	time.Sleep(1 * time.Second)
+	// }
+
+	// wg.Wait()
+	// close(msgChn)
+
+	generateChn := make(chan int)
+	genapChn := make(chan int)
+	kuadratChn := make(chan int)
+	n := 30
+	wg.Go(func() {
+		Generate(n, generateChn)
+		close(generateChn)
+
+	})
+	wg.Go(func() {
+		Genap(generateChn, genapChn)
+		close(genapChn)
+
+	})
+	wg.Go(func() {
+		Kuadrat(genapChn, kuadratChn)
+		close(kuadratChn)
+	})
+	for hasil := range kuadratChn {
+		fmt.Println(hasil)
+	}
 
 	wg.Wait()
-	fmt.Println("Berangkat Kerja")
+}
 
+func Generate(n int, angkaChn chan int) {
+	for i := 1; i <= n; i++ {
+		angkaChn <- i
+	}
+}
+
+func Genap(generateChn chan int, genapChn chan int) {
+	for angka := range generateChn {
+		if angka%2 == 0 {
+			genapChn <- angka
+		}
+	}
+}
+
+func Kuadrat(genapChn chan int, kuadratChn chan int) {
+	for v := range genapChn {
+		kuadratChn <- v * v
+	}
 }
